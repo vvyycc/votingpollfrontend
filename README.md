@@ -1,9 +1,9 @@
 # votingpollfrontend
 
 
-    - The address of the smart contract is:0xb2eFf542f4EbE8B4A1a14864426435f08f8D4D7A
+    - The address of the smart contract is:0x3302581BFAb3e200dfBaF3708d19345459f5E9db
 
-    - The blockchain used is: Rinkeby
+    - The blockchain used is: Ropsten
     
     - You can load the address in Remix and see whole functions that the smart contracts provide.
     
