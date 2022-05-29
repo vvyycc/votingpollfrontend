@@ -5,12 +5,11 @@ import {getContract,getCurrentAccount} from '../../utils/webprovider'
 import {OptionList, VotingPoll} from '../../components/listVotingPoll/listVotingPoll';
 import Select from 'react-select'
 import Link from 'next/link';
-const VotingPollPage: NextPage= () => {
+const VotingPollPage= ({isActive}:any) => {
   const [vote,setVote]=useState(1);
   const [option,setOption]=useState("");
   const [votingPoll,setVotingPoll]= useState(new VotingPoll());
   const [optionsu,setOptionsu] = useState([{value:'',numVotes:0,label:''}]);
-  const [active, setActive] = useState(false);
   let optionList:OptionList[]=[];
   const router = useRouter()
   const { pid }= router.query
@@ -21,20 +20,7 @@ const VotingPollPage: NextPage= () => {
     { value: 'verygood', label: 'Very good' }
   ]
 
-  setInterval(() => {
-
-    let chainIds = localStorage.getItem("chainId");
-    if (chainIds != null) {
-
-        setActive(true)
-    }
-    else {
-        setActive(false)
-    }
-
-}, 2000)
   useEffect(() => {
-       
     load();
   }, []);
  
@@ -73,7 +59,7 @@ const VotingPollPage: NextPage= () => {
   
   }
    return (
-   <>{active ? <div key={pid?.toString()} className="grid grid-cols-2">
+   <>{isActive ? <div key={pid?.toString()} className="grid grid-cols-2">
        <div  className='absolute float-right top-[90px] left-[60px]'> <Link href="/">
                     <button className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'> Home</button>
                 </Link></div>

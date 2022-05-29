@@ -3,34 +3,16 @@ import { ListVotingPoll } from '../components/listVotingPoll/listVotingPoll';
 
 
 
-import React, { useEffect, useState } from 'react';
-import { setInterval } from 'timers';
+import React from 'react';
 
 
 
-const Home: NextPage =  () => {
+const Home: NextPage =  ({isActive}:any) => {
     
-    const [active,setActive] = useState(false);
-
-
-   const interval= setInterval(() => {
-
-    let chainIds=localStorage.getItem("chainId");
-    if(chainIds!=null){ 
-       
-        setActive(true)
-        clearInterval(interval);
-    }
-    else{
-        setActive(false)
-    }
-    
-    }, 2000)
-  
 
   
   return (<> 
-       {active ?<ListVotingPoll />:""}
+       {isActive ?<ListVotingPoll />:""}
       </>)
 
  
