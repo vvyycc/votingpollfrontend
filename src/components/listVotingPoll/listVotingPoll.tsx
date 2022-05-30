@@ -16,20 +16,20 @@ export interface OptionList{
     numVotes:number
     label:string;
 }
-export const ListVotingPoll = () => {
+export const ListVotingPoll = (active:any) => {
    
     const [votingPollListed, setVotingPollListed] = useState(new Array<VotingPoll>());
     let votingPollList:Array<VotingPoll>= new Array<VotingPoll>();
     useEffect(() => {
-       
+       if(active){
         load();
+    }
     }, []);
     
     
     async function load() {
       
-        let chainId=localStorage.getItem("chainId");
-        if (chainId != "") {
+   
             const votingPoll = await getContract();
             const votingPollcounter: string = await votingPoll.methods.votingPollCount().call();
             console.log(votingPollcounter);
@@ -46,7 +46,6 @@ export const ListVotingPoll = () => {
              
             votingPollList= getListVotingPoll(getVotingPollF);
             setVotingPollListed(votingPollList);
-        }
    
 
     }

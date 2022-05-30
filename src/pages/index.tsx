@@ -12,7 +12,7 @@ const Home: NextPage =  ({isActive}:any) => {
 
   
   return (<> 
-       {isActive ?<ListVotingPoll />:""}
+       {isActive ?<ListVotingPoll active={isActive} />:""}
       </>)
 
  

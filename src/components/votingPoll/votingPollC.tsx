@@ -10,14 +10,12 @@ export const VotingPollC = (votingPolls: { id: string, title: string }) => {
     const [optionsu, setOptionsu] = useState([{ value: '', numVotes: 0, label: '' }])
     let optionList: OptionList[] = [];
     useEffect(() => {
-
+        
         load();
     }, []);
  
     async function load() {
 
-        let chainId = localStorage.getItem("chainId");
-        if (chainId != "") {
             const votingPoll = await getContract();
             let optionsGood: OptionList = { value: 'good', numVotes: 0, label: 'Good' };
             let optionsBad: OptionList = { value: 'bad', numVotes: 0, label: 'Bad' };
@@ -39,7 +37,6 @@ export const VotingPollC = (votingPolls: { id: string, title: string }) => {
             optionsVeryGood.numVotes = Number(optionVeryGoodNumVotes);
 
             setOptionsu(optionList);
-        }
 
 
     }
