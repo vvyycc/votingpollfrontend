@@ -3,19 +3,22 @@ import { useEffect, useState } from "react";
 import { getContract } from "../../utils/webprovider";
 import { OptionList } from "../listVotingPoll/listVotingPoll";
 
-export const VotingPollC = (votingPolls: { id: string, title: string }) => {
+
+export const VotingPollC = (votingPolls: { id: string, title: string,active:any}) => {
   
    
-    const { id, title } = votingPolls;
+    const { id, title,active } = votingPolls;
     const [optionsu, setOptionsu] = useState([{ value: '', numVotes: 0, label: '' }])
     let optionList: OptionList[] = [];
     useEffect(() => {
-        
+        if(active){
         load();
+    }
     }, []);
  
     async function load() {
 
+    
             const votingPoll = await getContract();
             let optionsGood: OptionList = { value: 'good', numVotes: 0, label: 'Good' };
             let optionsBad: OptionList = { value: 'bad', numVotes: 0, label: 'Bad' };

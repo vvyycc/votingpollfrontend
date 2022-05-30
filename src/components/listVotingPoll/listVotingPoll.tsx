@@ -8,8 +8,8 @@ import Link from "next/link";
 export class VotingPoll{
     id="";
     title="";
-    options="";
     numVotes="";
+    active=""
 }
 export interface OptionList{
     value:string;
@@ -29,7 +29,7 @@ export const ListVotingPoll = (active:any) => {
     
     async function load() {
       
-   
+ 
             const votingPoll = await getContract();
             const votingPollcounter: string = await votingPoll.methods.votingPollCount().call();
             console.log(votingPollcounter);
@@ -46,6 +46,7 @@ export const ListVotingPoll = (active:any) => {
              
             votingPollList= getListVotingPoll(getVotingPollF);
             setVotingPollListed(votingPollList);
+        
    
 
     }
@@ -60,7 +61,7 @@ export const ListVotingPoll = (active:any) => {
    
             {votingPollListed.map((votingPoll)=>(
      
-                <VotingPollC   id={votingPoll.id} title={votingPoll.title}  ></VotingPollC>
+                <VotingPollC   id={votingPoll.id} title={votingPoll.title} active={votingPoll.active} ></VotingPollC>
             )) }
 
         </div>
@@ -73,7 +74,7 @@ export const ListVotingPoll = (active:any) => {
            let votingPoll:VotingPoll= new VotingPoll();
            votingPoll.id=element[0];
            votingPoll.title=element[1];
-           votingPoll.numVotes=element[3];
+           votingPoll.active=active;
            votingPollList.push(votingPoll)
        });
         return votingPollList
